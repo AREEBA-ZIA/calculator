@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <!-- appends mean to add something at the end  -->
+            <!-- Here, appendValue(value) ensures that when a user clicks a button, 
+            its value is added to the display instead of replacing the existing content. -->
+            <!-- it takes one input/value -->
+            <button class="operator" onclick="clearDisplay()">C</button> 
+            <button class="operator" onclick="appendValue('/')">/</button>
+            <button class="operator" onclick="appendValue('*')">*</button>
+            <button class="operator" onclick="appendValue('-')">-</button>
+            
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
+            
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button class="operator" onclick="calculate()">=</button>
+            
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('0')">0</button>
+        </div>
+    </div>
+    <script>
+        function appendValue(value) {
+            document.getElementById('display').value += value;
+        }
+        // .value += value;
+       // This adds (appends) the new value to the existing text in the display.
+      //    The += operator means: "take the current value and add something to it" instead of replacing it.
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+    <!-- <input type="text" id="display" readonly> -->
+    <!-- <button onclick="appendValue('5')">5</button>
+<button onclick="appendValue('+')">+</button>
+<button onclick="appendValue('3')">3</button> -->
+<!-- <button onclick="appendValue('5')">5</button>
+<button onclick="appendValue('+')">+</button>
+<button onclick="appendValue('3')">3</button> -->
+<!-- First click "5" → display shows 5
+🔹 Then click "+" → display updates to 5+
+🔹 Then click "3" → display updates to 5+3 -->
+<!-- appendValue(value) adds the clicked number or operator to the display.
+✅ It does not erase previous input; it keeps adding to it.
+✅ This helps users enter full expressions like "12+8" before clicking = to calculate. -->
+
+</body>
+</html>
